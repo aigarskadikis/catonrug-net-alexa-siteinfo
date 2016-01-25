@@ -258,7 +258,7 @@ awk "/Alexa web traffic metrics are available via/{f=1} /Last 7 days/{f=0;print}
 sed "s/ \|\d034>\|<\//\n/g" | \
 grep "^[0-9,]" | \
 head -1)
-tail -1 $db | grep $globalrank
+tail -2 $db | grep $globalrank
 if [ $? -eq 0 ]
 then
 echo "Rank has not change"
