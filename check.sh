@@ -258,19 +258,16 @@ awk "/Alexa web traffic metrics are available via/{f=1} /Last 7 days/{f=0;print}
 sed "s/ \|\d034>\|<\//\n/g" | \
 grep "^[0-9,]" | \
 head -1)
-tail -2 $db | grep $globalrank
-if [ $? -eq 0 ]
+tail -1 $db | grep $globalrank
+if [ $? -ne 0 ]
 then
-echo "Rank has not change"
-else
 echo "New alexa rank is $globalrank"
 echo $globalrank>> $db
+#lets send emails to all people in "maintenance" file
+emails=$(cat ../maintenance | sed '$aend of file')
+printf %s "$emails" | while IFS= read -r onemail
+do {
+python ../send-email.py "$onemail" "New alexa rank is $globalrank" "$globalrank"
+} done
 fi
-							#lets send emails to all people in "maintenance" file
-							emails=$(cat ../maintenance | sed '$aend of file')
-							printf %s "$emails" | while IFS= read -r onemail
-							do {
-								python ../send-email.py "$onemail" "New alexa rank is $globalrank" "$globalrank"
-							} done
-	
 rm $tmp -rf > /dev/null
