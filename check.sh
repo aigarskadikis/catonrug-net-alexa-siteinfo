@@ -6,7 +6,7 @@
 #sudo apt-get update -y && sudo apt-get upgrade -y
 #sudo apt-get install git -y
 #mkdir -p /home/pi/detect && cd /home/pi/detect
-#git clone https://github.com/catonrug/k-lite-codec-pack-detect.git && cd k-lite-codec-pack-detect && chmod +x check.sh && ./check.sh
+#git clone https://github.com/catonrug/catonrug-net-alexa-siteinfo.git && cd catonrug-net-alexa-siteinfo && chmod +x check.sh && ./check.sh
 
 #check if script is located in /home direcotry
 pwd | grep "^/home/" > /dev/null
