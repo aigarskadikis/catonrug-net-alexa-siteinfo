@@ -267,7 +267,7 @@ echo $globalrank>> $db
 emails=$(cat ../maintenance | sed '$aend of file')
 printf %s "$emails" | while IFS= read -r onemail
 do {
-python ../send-email.py "$onemail" "New alexa rank!" "$globalrank"
+python ../send-email.py "$onemail" "Alexa rank has change" "$globalrank"
 } done
 fi
 rm $tmp -rf > /dev/null
